@@ -1,5 +1,5 @@
 {
-  "name": "uhmegle-video-integration",
+  "name": "newvision-server",
   "version": "1.0.0",
   "description": "Server per l'integrazione con uhmegle.com per il ripristino dei dati utente durante le videochiamate",
   "main": "src/index.js",
@@ -11,7 +11,8 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "ws": "^8.16.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
@@ -21,14 +22,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/tu-utente/uhmegle-video-integration.git"
+    "url": "https://github.com/0andry/NEWVISION_SERVER.git"
   },
   "keywords": [
     "uhmegle",
     "video-call",
     "webhook",
+    "websocket",
     "integration"
   ],
-  "author": "Il Tuo Nome",
+  "author": "Andrea",
   "license": "MIT"
 }
