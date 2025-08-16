@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: my-plugin-server
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: GITHUB_WEBHOOK_SECRET
+        sync: false  # Imposta questo segreto manualmente su Render
