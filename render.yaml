@@ -2,7 +2,7 @@ services:
   - type: web
     name: newvision-server
     env: node
-    region: frankfurt  # Scegli la regione più vicina a te
+    region: frankfurt
     plan: free
     buildCommand: npm install
     startCommand: npm start
@@ -12,22 +12,21 @@ services:
       - key: NODE_ENV
         value: production
       - key: UHMEGLE_WEBHOOK_SECRET
-        generateValue: true  # Render genererà automaticamente un valore sicuro
+        generateValue: true
     healthCheckPath: /health
-    autoDeploy: true  # Abilita il deploy automatico ad ogni push su GitHub
+    autoDeploy: true
 
-# Configurazione per i webhooks (opzionale)
+# Webhook configuration
 webhooks:
   - type: repo
     name: github
     events:
       - push
     config:
-      url: $WEBHOOK_URL  # Verrà sostituito con l'URL del tuo servizio
-      secret: $WEBHOOK_SECRET  # Verrà sostituito con il segreto generato
+      url: $WEBHOOK_URL
+      secret: $WEBHOOK_SECRET
 
-# Configurazione delle variabili d'ambiente
-# Queste possono essere sovrascritte dal pannello di controllo di Render
+# Environment variables
 envVars:
   - key: NODE_ENV
     value: production
