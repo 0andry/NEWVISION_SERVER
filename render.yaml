@@ -1,13 +1,35 @@
 services:
   - type: web
-    name: my-plugin-server
+    name: newvision-server
     env: node
+    region: frankfurt  # Scegli la regione più vicina a te
+    plan: free
     buildCommand: npm install
     startCommand: npm start
     envVars:
-      - key: NODE_ENV
-        value: production
       - key: PORT
         value: 10000
-      - key: GITHUB_WEBHOOK_SECRET
-        sync: false  # Imposta questo segreto manualmente su Render
+      - key: NODE_ENV
+        value: production
+      - key: UHMEGLE_WEBHOOK_SECRET
+        generateValue: true  # Render genererà automaticamente un valore sicuro
+    healthCheckPath: /health
+    autoDeploy: true  # Abilita il deploy automatico ad ogni push su GitHub
+
+# Configurazione per i webhooks (opzionale)
+webhooks:
+  - type: repo
+    name: github
+    events:
+      - push
+    config:
+      url: $WEBHOOK_URL  # Verrà sostituito con l'URL del tuo servizio
+      secret: $WEBHOOK_SECRET  # Verrà sostituito con il segreto generato
+
+# Configurazione delle variabili d'ambiente
+# Queste possono essere sovrascritte dal pannello di controllo di Render
+envVars:
+  - key: NODE_ENV
+    value: production
+  - key: PORT
+    value: 10000
